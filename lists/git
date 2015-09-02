@@ -6,6 +6,7 @@ ssh://git@git.rebase.com.au/schkit_pov $HOME/schkit/pov
 ssh://git@github.com/daemonl/go_gsd $HOME/go/src/github.com/daemonl/go_gsd
 ssh://git@github.com/daemonl/go_lib $HOME/go/src/github.com/daemonl/go_lib
 ssh://git@github.com/daemonl/databath $HOME/go/src/github.com/daemonl/databath
+ssh://git@github.com/daemonl/informer $HOME/go/src/github.com/daemonl/informer
 ssh://git@github.com/daemonl/go_sweetpl $HOME/go/src/github.com/daemonl/go_sweetpl
 ssh://git@github.com/daemonl/go_xero $HOME/go/src/github.com/daemonl/go_xero
 ssh://git@github.com/daemonl/blog $HOME/blog

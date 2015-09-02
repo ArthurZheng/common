@@ -1,20 +1,49 @@
+# Basic Tools
 vim
 git
+mercurial
 curl
+ansible
+
+# Window Manager
+xorg
 i3
+vim-gtk
 konsole
 fonts-liberation
+# Oxygen is a KDE style, ported to gtk
 gtk2-engines-oxygen
 gtk3-engines-oxygen
+gtk2-engines-murrine
+gtk2-engines-pixbuf
+
+# nm-applet:
 network-manager
 network-manager-gnome
 network-manager-pptp
 network-manager-pptp-gnome
 network-manager-openvpn
 network-manager-openvpn-gnome
-thunar
-nitrogen
-xorg
-vim-gtk
-chromium
 
+thunar # File Manager
+nitrogen # Wallpaper Manager
+chromium # Browser
+file-roller # Zip / tgz Viewer
+
+# ROFI Build Dependencies
+libxinerama-dev
+libxft2-dev
+libpango1.0-dev
+libx11-6
+
+# Dev Tools
+nodejs
+build-essential
+pkg-config
+
+# With GUI
+gitg
+kdiff3
+meld
+tortoisehg
+synaptic
