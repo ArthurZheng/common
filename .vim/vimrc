@@ -34,11 +34,13 @@ Plugin 'ingydotnet/yaml-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'groenewege/vim-less'
+Plugin 'derekwyatt/vim-scala'
 Plugin 'gijsk/mozjs-syntax'
 Plugin 'sorin-ionescu/vim-htmlvalidator'
+
+"Util
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-
 Plugin 'shime/vim-livedown'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'daemonl/schkit-vim'

@@ -38,6 +38,7 @@ libx11-6
 
 # Dev Tools
 nodejs
+npm
 build-essential
 pkg-config
 
