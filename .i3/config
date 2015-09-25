@@ -41,6 +41,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec konsole
 
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
