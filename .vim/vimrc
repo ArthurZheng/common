@@ -66,30 +66,19 @@ set undodir=~/.vim/undo//
 " Numbers
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'netrw']
 
-
 " Typescript
 set rtp+=/usr/local/lib/node_modules/typescript-tools
-
 
 set splitright
 set number
 set mouse=a
 set t_Co=256
 
-
 " Tabs by default
 set tabstop=4 softtabstop=4 shiftwidth=4
 
 let g:miniBufExplBuffersNeeded = 1
 let g:netrw_liststyle = 3
-
- 
-"hi MBENormal               guifg=White guibg=Black
-"hi MBEChanged              guifg=Blue guibg=Black
-"hi MBEVisibleNormal        guifg=Green guibg=Black
-"hi MBEVisibleChanged       guifg=Green guibg=Black
-"hi MBEVisibleActiveNormal  guifg=Green guibg=Black
-"hi MBEVisibleActiveChanged guifg=Green guibg=Black
 
 " display indentation guides
 set list listchars=tab:·\ ,trail:·,extends:>,precedes:>,nbsp:·
@@ -187,3 +176,6 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+set exrc
+set secure
