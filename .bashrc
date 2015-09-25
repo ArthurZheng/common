@@ -21,9 +21,6 @@ shopt -s expand_aliases
 #	alias vim="gvim"
 #fi
 
-alias cssh="ssh -F $HOME/ops/rmrf8/aws/ssh.config"
-alias cscp="scp -F $HOME/ops/rmrf8/aws/ssh.config"
-
 alias ls="ls --color=auto"
 alias ll="ls -la"
 alias grep="grep --color=auto"
@@ -67,3 +64,6 @@ PS1+="$COLOR_RESET\n$COLOR_PROMPT\$ $COLOR_RESET"
 
 export PS1
 
+if [ -f $HOME/.bashrc-local ]; then
+	source $HOME/.bashrc-local
+fi
