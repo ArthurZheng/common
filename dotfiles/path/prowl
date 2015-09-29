@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DIR=/home/daemonl/.script/prowl
+KEY=`cat $DIR/apikey`
+TITLE=$1
+MESSAGE=$2
+curl https://api.prowlapp.com/publicapi/add -F apikey=$KEY -F application=Agathon -F event="$1" -F description="$2"
+#curl https://api.prowlapp.com/publicapi/verify -F apikey=$KEY

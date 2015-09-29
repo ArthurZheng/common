@@ -1,0 +1,12 @@
+#!/bin/bash
+set -ue
+
+repo=$1
+listFile=~/git_repos
+echo $repo
+if [[ `cat $listFile | grep $repo` ]]; then
+	echo "Exists"
+else
+	echo "Doesn't Exist"
+	echo $repo >> $listFile
+fi

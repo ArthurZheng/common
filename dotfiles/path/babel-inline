@@ -1,0 +1,7 @@
+#!/bin/bash
+set -ue
+src=$1
+dst="${src/%.es6/.js}"
+babel \
+	--sourceMaps=true \
+	$src > $dst

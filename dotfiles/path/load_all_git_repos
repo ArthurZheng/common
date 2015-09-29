@@ -1,0 +1,28 @@
+#!/bin/bash
+
+echo "" > ~/git_repos
+
+find ~/ -name ".git" \
+	-not -path "*/vendor/*" \
+	-not -path "*/bootstrap/*" \
+	-not -path "*/font-awesome/*" \
+	-not -path "*/node_modules/*" \
+	-not -path "/home/daemonl/src/*" \
+	-not -path "/home/daemonl/go/*" \
+	-not -path "/home/daemonl/Dropbox/*" \
+	-not -path "/home/daemonl/Downloads/*" \
+	-not -path "/home/daemonl/Clients/rmrf8/workspace/*" \
+	-not -path "/home/daemonl/.*" \
+>> ~/git_repos
+
+find ~/go/src/github.com/daemonl/ -name ".git" >> ~/git_repos
+find ~/go/src/git.rebase.com.au/ -name ".git" >> ~/git_repos
+find ~/go/src/github.com/rmrf8/ -name ".git" >> ~/git_repos
+find ~/go/src/github.com/scharp/ -name ".git" >> ~/git_repos
+
+echo "/home/daemonl/.vim/.git" >> ~/git_repos
+echo "/home/daemonl/.vim/bundle/schkit-vim/.git" >> ~/git_repos
+
+sed -i "s+/\.git++" ~/git_repos
+
+
