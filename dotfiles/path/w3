@@ -1,0 +1,4 @@
+#!/bin/bash
+set -ue
+file=$1
+curl -H "Content-Type: text/html; charset=utf-8" --data-binary @$file https://validator.w3.org/nu/?out=gnu

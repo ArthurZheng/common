@@ -1,0 +1,3 @@
+#!/bin/bash
+
+go run ~/go/src/github.com/daemonl/databath/sync/main/*.go $@

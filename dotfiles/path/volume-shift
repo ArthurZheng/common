@@ -1,0 +1,4 @@
+#!/bin/bash
+
+amixer -q set Master $1 unmute
+amixer sget Master | grep -o "[0-9]\+%" | head -n 1 | while read O; do notify-send -t 100 $O; done

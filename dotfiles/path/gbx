@@ -1,0 +1,2 @@
+cd ~/Clients/gbx/vpn
+sudo openvpn greenbox-services.ovpn

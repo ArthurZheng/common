@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cacheFile=~/.cache/rofi-2.runcache
+
+while read num name; do
+	if [[ `which $name` ]]; then
+		echo $num $name >> $cacheFile.new
+	else
+		echo "Remove $name"
+	fi
+done < $cacheFile
+mv $cacheFile.new $cacheFile
