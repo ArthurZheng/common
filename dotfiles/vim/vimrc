@@ -56,7 +56,8 @@ set rtp+=$GOROOT/misc/vim
 filetype plugin indent on
 syntax on
 
-let g:airline_powerline_fonts = 1
+" Powerline
+let g:airline_powerline_fonts = 1 
 
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
