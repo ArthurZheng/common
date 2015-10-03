@@ -1,0 +1,19 @@
+[user]
+	name = Damien Whitten
+	email = damien@rebase.com.au
+[push]
+	default = simple
+[mergetool]
+	keepBackup = false
+[core]
+	fileMode = false
+	pager = less -S
+[alias]
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	lb = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative master..HEAD
+	lt = log --decorate --oneline --graph
+
+	st = status -s
+	ci = commit
+
