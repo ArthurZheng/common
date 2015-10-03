@@ -24,6 +24,8 @@ shopt -s expand_aliases
 alias ls="ls --color=auto"
 alias ll="ls -la"
 alias grep="grep --color=auto"
+alias less="less -S"
+alias gitg="setsid gitg > /dev/null 2>&1" 
 
 stty -ixon # Disable ctrl+s freeze thing, use it for history search
 
@@ -64,6 +66,36 @@ PS1+="$COLOR_RESET\n$COLOR_PROMPT\$ $COLOR_RESET"
 
 export PS1
 
+# usage: sshAlias t someConfigPath/config creates tssh and tscp with autocomplete
+sshAlias() {
+	PREFIX=$1
+	CONFIG=$2
+	_ssh() {
+
+		local cur prev opts
+		
+	opts=$(grep '^Host ' $CONFIG \
+		| cut -c6- \
+		| tr " " "\n" \
+		| sort | uniq \
+		| grep '^[^*]\+$')
+
+
+		COMPREPLY=()
+		cur="${COMP_WORDS[COMP_CWORD]}"
+		prev="${COMP_WORDS[COMP_CWORD-1]}"
+		#opts=$(grep '^Host' ~/.ssh/config | awk '{print $2}')
+
+		COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+		return 0
+	}
+	complete -F _ssh ${PREFIX}ssh
+	complete -f -d -F _ssh ${PREFIX}scp
+	alias ${PREFIX}ssh="ssh -F $CONFIG"
+	alias ${PREFIX}scp="scp -F $CONFIG"
+}
+
 if [ -f $HOME/.bashrc-local ]; then
 	source $HOME/.bashrc-local
 fi
+
