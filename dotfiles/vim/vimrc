@@ -177,5 +177,16 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 \ }
 
-set exrc
-set secure
+" TAB
+"
+" use 4 spaces for tabs
+autocmd! bufreadpost ~/TabDigital/* set tabstop=4 softtabstop=2 shiftwidth=2
+
+" convert spaces to tabs when reading file
+autocmd! bufreadpost ~/TabDigital/* set noexpandtab | retab! 2 | set tabstop=4
+
+" convert tabs to spaces before writing file
+autocmd! bufwritepre ~/TabDigital/* set tabstop=2 | set expandtab | retab! 2
+
+" convert spaces to tabs after writing file (to show guides again)
+autocmd! bufwritepost ~/TabDigital/* set noexpandtab | retab! 2 | set tabstop=4
