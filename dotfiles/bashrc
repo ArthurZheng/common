@@ -89,7 +89,12 @@ _ssh() {
 complete -F _ssh ssh
 complete -f -d -F _ssh scp
 
+if [ -f ~/common/scripts/git-completion.bash ]; then
+  source ~/common/scripts/git-completion.bash
+fi
+
 if [ -f $HOME/.bashrc-local ]; then
 	source $HOME/.bashrc-local
 fi
+
 
