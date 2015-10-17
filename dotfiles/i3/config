@@ -17,9 +17,15 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 workspace_auto_back_and_forth no
 focus_follows_mouse no
-bindsym $mod+r exec i3-input -F 'exec /home/daemonl/.path/i3rename "%s"' -P 'New name: '
+bindsym $mod+r exec i2-input -F 'exec /home/daemonl/.path/i3rename "%s"' -P 'New name: '
 bindsym $mod+Shift+l exec i3lock -c 002200
+bindsym $mod+Shift+d exec display-auto
 
+for_window [title="KCalc"] floating enable
+for_window [title="Calculator"] floating enable
+
+bindcode 147 exec kcalc
+bindcode --release 107 exec --no-startup-id import ~/screenshot-`date +%F-%T`.png
 ## Even and odd for two monitors
 workspace 1 output HDMI1
 workspace 2 output HDMI1
@@ -51,13 +57,12 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec dmenu_run
 bindsym $mod+space exec rofi -show run
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left  exec "focus left"
+bindsym $mod+Down  exec "focus down"
+bindsym $mod+Up    exec "focus up"
+bindsym $mod+Right exec "focus right"
+#bindsym $mod+Right focus right
 
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -130,13 +135,14 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
 
+
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
+        # back to no@snrmal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -151,7 +157,7 @@ bar {
 		separator #AAAAAA
 		background #111111
 		statusline #FFFFFF
-		focused_workspace  #444444 #111111 #e6db74
+		focused_workspace  #777777 #E6DB74 #000000
 		active_workspace   #111111 #111111 #eeeeee
 		inactive_workspace #444444 #111111 #eeeeee
 		urgent_workspace   #CE4045 #CE4045 #FFFFFF
@@ -163,3 +169,4 @@ client.focused_inactive #aaaaaa #111111 #eeeeee #eeeeee
 client.unfocused        #aaaaaa #111111 #eeeeee #eeeeee
 client.urgent           #CE4045 #CE4045 #e7d8b1 #DCCD69
 client.background #ffffff
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+xss-lock i3lock -c 002200 &
+eval $(ssh-agent)
+nitrogen --restore &
+i3

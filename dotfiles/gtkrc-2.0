@@ -1,0 +1,10 @@
+# -- THEME AUTO-WRITTEN BY gtk-theme-switch2 DO NOT EDIT
+include "/usr/share/themes/Murrine-Sky/gtk-2.0/gtkrc"
+
+include "/home/daemonl/.gtkrc-2.0.mine"
+
+# -- THEME AUTO-WRITTEN BY gtk-theme-switch2 DO NOT EDIT
+style "vimfix" {
+	bg[NORMAL] = "#1B1D1E"
+}
+widget "vim-main-window.*GtkForm" style "vimfix"

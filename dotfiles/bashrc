@@ -16,10 +16,7 @@ export HISTCONTROL=ignoredups:erasedups
 #export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 shopt -s expand_aliases
 
-#if hash gvim 2>/dev/null; then
-#	alias vi="gvim"
-#	alias vim="gvim"
-#fi
+#set -o vi # Vim line editing
 
 alias ls="ls --color=auto"
 alias ll="ls -la"
@@ -67,12 +64,9 @@ PS1+="$COLOR_RESET\n$COLOR_PROMPT\$ $COLOR_RESET"
 export PS1
 
 # usage: sshAlias t someConfigPath/config creates tssh and tscp with autocomplete
-sshAlias() {
-	PREFIX=$1
-	CONFIG=$2
-	_ssh() {
-
-		local cur prev opts
+_sshComplete() {
+	local CONFIG=$1
+	local cur prev opts
 		
 	opts=$(grep '^Host ' $CONFIG \
 		| cut -c6- \
@@ -80,20 +74,20 @@ sshAlias() {
 		| sort | uniq \
 		| grep '^[^*]\+$')
 
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-		COMPREPLY=()
-		cur="${COMP_WORDS[COMP_CWORD]}"
-		prev="${COMP_WORDS[COMP_CWORD-1]}"
-		#opts=$(grep '^Host' ~/.ssh/config | awk '{print $2}')
-
-		COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
-		return 0
-	}
-	complete -F _ssh ${PREFIX}ssh
-	complete -f -d -F _ssh ${PREFIX}scp
-	alias ${PREFIX}ssh="ssh -F $CONFIG"
-	alias ${PREFIX}scp="scp -F $CONFIG"
+	COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+	return 0
 }
+
+_ssh() {
+	_sshComplete $HOME/.ssh/config
+}
+
+complete -F _ssh ssh
+complete -f -d -F _ssh scp
 
 if [ -f $HOME/.bashrc-local ]; then
 	source $HOME/.bashrc-local

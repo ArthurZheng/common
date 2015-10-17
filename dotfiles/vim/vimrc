@@ -65,7 +65,7 @@ set undodir=~/.vim/undo//
 
 """"
 " Numbers
-let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'netrw']
+let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'netrw', 'help']
 
 " Typescript
 set rtp+=/usr/local/lib/node_modules/typescript-tools
@@ -94,9 +94,27 @@ imap <PageDown> <Nop>
 nnoremap <leader>] :NERDTreeToggle<CR>
 
 " Copy and Paste
-vnoremap <C-c> "+y
+vnoremap <C-c> "+Y
 noremap <C-c> "+y
 noremap <C-v> "+p
+
+func! Focus(direction_i3,direction_vim)
+  let oldw = winnr()
+  silent exe 'wincmd ' . a:direction_vim
+  let neww = winnr()
+  if oldw == neww
+    silent exe '!i3-msg -q focus ' . a:direction_i3
+    if !has("gui_running")
+        redraw!
+    endif
+  endif
+endfunction
+
+map gwu :call Focus('up', 'k')<CR>
+map gwd :call Focus('down', 'j')<CR>
+map gwl :call Focus('left', 'h')<CR>
+map gwr :call Focus('right', 'l')<CR>
+
 
 " Lazy shift key :-)
 command! W w
@@ -179,15 +197,17 @@ let g:tagbar_type_go = {
 \ }
 
 " TAB
-"
+augroup kenotabs
+	au!
 " use 4 spaces for tabs
-autocmd! bufreadpost ~/TabDigital/* set tabstop=4 softtabstop=2 shiftwidth=2
+autocmd! bufreadpost ~/TabDigital/*.{coffee,js} set tabstop=4 softtabstop=2 shiftwidth=2
 
 " convert spaces to tabs when reading file
-autocmd! bufreadpost ~/TabDigital/* set noexpandtab | retab! 2 | set tabstop=4
+autocmd! bufreadpost ~/TabDigital/*.{coffee,js} set noexpandtab | retab! 2 | set tabstop=4
 
 " convert tabs to spaces before writing file
-autocmd! bufwritepre ~/TabDigital/* set tabstop=2 | set expandtab | retab! 2
+autocmd! bufwritepre ~/TabDigital/*.{coffee,js} set tabstop=2 | set expandtab | retab! 2
 
 " convert spaces to tabs after writing file (to show guides again)
-autocmd! bufwritepost ~/TabDigital/* set noexpandtab | retab! 2 | set tabstop=4
+autocmd! bufwritepost ~/TabDigital/*.{coffee,js} set noexpandtab | retab! 2 | set tabstop=4
+augroup END
