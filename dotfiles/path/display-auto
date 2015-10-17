@@ -1,0 +1,35 @@
+#!/bin/bash
+
+disp_eDP1=false
+disp_VGA1=false
+disp_HDMI1=false
+disp_other=false
+
+while read display; do
+	displayName=$(echo $display | cut -d' ' -f1 )
+	echo "Display: $displayName"
+	case $displayName in
+		"eDP1")
+			disp_eDP1=true
+		;;
+		"VGA1")
+			disp_VGA1=true
+			;;
+		"HDMI1")
+			disp_HDMI1=true
+			;;
+		*)
+			disp_other=true
+			;;
+	esac
+done < <( xrandr | grep " connected")
+
+if ( [ !$disp_other ] && $disp_VGA1 && $disp_HDMI1 ); then
+	xrandr --output VGA1 --auto
+	xrandr --output HDMI1 --auto --left-of VGA1
+	xrandr --output eDP1 --off
+else
+	xrandr --output eDP1 --auto
+	xrandr --output VGA1 --off
+	xrandr --output HDMI1 --off
+fi

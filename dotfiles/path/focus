@@ -1,0 +1,9 @@
+#!/bin/bash
+direction=$1
+
+windowName=`xdotool getactivewindow getwindowname`
+if [[ $windowName == *"VIM" ]]; then
+	xdotool getactivewindow key keystroke "Escape+g+w+${direction:0:1}"
+else 
+	i3-msg -q focus $direction > /dev/null
+fi
