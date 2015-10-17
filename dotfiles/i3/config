@@ -157,16 +157,15 @@ bar {
 		separator #AAAAAA
 		background #111111
 		statusline #FFFFFF
-		focused_workspace  #777777 #E6DB74 #000000
-		active_workspace   #111111 #111111 #eeeeee
+		focused_workspace  #009900 #002200 #00ee00
+		active_workspace   #009900 #111111 #009900
 		inactive_workspace #444444 #111111 #eeeeee
 		urgent_workspace   #CE4045 #CE4045 #FFFFFF
 	}
 }
 # class                 border  bg      text    indicator
-client.focused          #aaaaaa #111111 #E6DB74 #000000
+client.focused          #aaaaaa #009900 #000000 #000000
 client.focused_inactive #aaaaaa #111111 #eeeeee #eeeeee
 client.unfocused        #aaaaaa #111111 #eeeeee #eeeeee
 client.urgent           #CE4045 #CE4045 #e7d8b1 #DCCD69
 client.background #ffffff
-
