@@ -12,12 +12,14 @@ check() {
 	echo $remote
 
     git_status=$(git status 2> /dev/null)
-	echo $git_status
+	#echo $git_status
 
 	if [[ ! $git_status =~ "working directory clean" ]]; then
 			echo "FIX $r"
 			gitg
-	elif [[ $git_status =~ "Your branch is ahead of" ]]; then
+			git_status=$(git status 2> /dev/null)
+	fi
+	if [[ $git_status =~ "Your branch is ahead of" ]]; then
 			git config --get remote.origin.url
 			echo -e "PUSH $r \n [y/n]? "
 			read resp < /dev/tty
