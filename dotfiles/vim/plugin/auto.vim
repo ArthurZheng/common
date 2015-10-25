@@ -1,5 +1,5 @@
-func! SchkitAuto()
-	augroup schkit
+func! AutoBuild()
+	augroup autobuild
 		au!
 		au BufWritePost *.coffee make
 		au BufWritePost *.ts make
@@ -8,11 +8,11 @@ func! SchkitAuto()
 	augroup END
 endfunction
 
-func! NoSchkitAuto()
-	augroup schkit
+func! NoAutoBuild()
+	augroup autobuild
 		au!
 	augroup END
 endfunction
 
-command! SchkitAuto call SchkitAuto()
-command! NoSchkitAuto call NoSchkitAuto()
+command! AutoBuild call AutoBuild()
+command! NoAutoBuild call NoAutoBuild()

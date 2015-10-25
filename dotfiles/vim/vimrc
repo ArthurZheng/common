@@ -2,8 +2,9 @@ set fenc=utf-8
 scriptencoding utf-8
 set encoding=utf-8
 
-let $PATH .= expand(":$HOME/go/bin:$HOME/.path")
-let $GOPATH = expand(":$HOME/go")
+"let $PATH .= expand(":$HOME/go/bin:$HOME/.path")
+"let $GOPATH = expand(":$HOME/go")
+
 " Vundle!
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -13,7 +14,6 @@ Plugin 'gmarik/Vundle.vim'
 "UI
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
@@ -22,10 +22,8 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'myusuf3/numbers.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'chrisbra/unicode.vim'
 
-Plugin 'SirVer/ultisnips'
+"Plugin 'chrisbra/unicode.vim'
 
 "Languages
 Plugin 'fatih/vim-go'
@@ -36,25 +34,26 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'groenewege/vim-less'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'gijsk/mozjs-syntax'
-Plugin 'sorin-ionescu/vim-htmlvalidator'
+"Plugin 'javacomplete'
 
 "Util
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'shime/vim-livedown'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'daemonl/schkit-vim'
-
-Plugin 'godlygeek/tabular'
-"Plugin 'dbext.vim'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
-Plugin 'javacomplete'
+Plugin 'godlygeek/tabular'
+
 Plugin 'scrooloose/syntastic'
 call vundle#end()
 let g:gofmt_command = "goimports"
 set rtp+=$GOROOT/misc/vim
 filetype plugin indent on
 syntax on
+
+set incsearch
+"set hlsearch
 
 " Powerline
 let g:airline_powerline_fonts = 1 
@@ -110,6 +109,26 @@ func! Focus(direction_i3,direction_vim)
   endif
 endfunction
 
+func! ParamLeft()
+	echo "LEFT"
+	echo search('[,\(]', 'b', line("w0"))
+endfunction
+func! ParamRight()
+	echo search('[,\)]', '', line("w0"))
+endfunction
+
+"  (p3, "p1", p4, p2)
+" back to leading , or (
+" if backwards, do it again
+" move one right
+" insert a -%- marker
+" re order parameters, beginning at marker
+" put the marker back where the cursor should end up
+" move to the marker, and delete it
+" Would be better to run :s from the cursor to EOL
+noremap p] ?[,(]<cr>li-%-<Esc>:s/\v-\%-([ ]?)([^,)]+)([,)][ ]?)([^,)]+)/\1\4\3-\%-\2/<cr>/-%-<cr>d3l
+noremap p[ ?[,(]<cr>nli-%-<Esc>:s/\v-\%-([ ]?)([^,)]+)([,)][ ]?)([^,)]+)/\1-\%-\4\3\2/<cr>/-%-<cr>d3l
+
 map gwu :call Focus('up', 'k')<CR>
 map gwd :call Focus('down', 'j')<CR>
 map gwl :call Focus('left', 'h')<CR>
@@ -141,7 +160,7 @@ set completeopt=longest,menuone
 " Super Tab
 "let g:SuperTabDefaultCompletionType = "<C-x><C-o>"
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabLongestHighlight = 1
+"let g:SuperTabLongestHighlight = 1
 
 " Colors
 if has("gui_running") || &t_Co >= 256
@@ -167,47 +186,3 @@ augroup END
 hi StatusLine term=reverse guifg=Black guibg=Green
 
 
-" TagBar Golang settings
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-
-" TAB
-augroup kenotabs
-	au!
-" use 4 spaces for tabs
-autocmd! bufreadpost ~/TabDigital/*.{coffee,js} set tabstop=4 softtabstop=2 shiftwidth=2
-
-" convert spaces to tabs when reading file
-autocmd! bufreadpost ~/TabDigital/*.{coffee,js} set noexpandtab | retab! 2 | set tabstop=4
-
-" convert tabs to spaces before writing file
-autocmd! bufwritepre ~/TabDigital/*.{coffee,js} set tabstop=2 | set expandtab | retab! 2
-
-" convert spaces to tabs after writing file (to show guides again)
-autocmd! bufwritepost ~/TabDigital/*.{coffee,js} set noexpandtab | retab! 2 | set tabstop=4
-augroup END
