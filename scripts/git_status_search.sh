@@ -8,19 +8,20 @@ check() {
 	cd $r
 	echo "=========================="
 	pwd
-	remote=$(git config --get remote.origin.url)
+	remote=$(git config --get remote.origin.url || echo "NO REMOTE")
 	echo $remote
 
-    git_status=$(git status 2> /dev/null)
+    git_status=$(git status)
 	#echo $git_status
 
 	if [[ ! $git_status =~ "working directory clean" ]]; then
 			echo "FIX $r"
 			gitg
-			git_status=$(git status 2> /dev/null)
+			echo "After gitg"
+			git_status=$(git status)
 	fi
 	if [[ $git_status =~ "Your branch is ahead of" ]]; then
-			git config --get remote.origin.url
+			git config --get remote.origin.url || echo "NO REMOTE"
 			echo -e "PUSH $r \n [y/n]? "
 			read resp < /dev/tty
 			if [ "$resp" == "y" ]; then
@@ -62,3 +63,4 @@ search ~/TabDigital
 search ~/ops
 check ~/common
 check ~/calite
+echo "Clean Exit"
