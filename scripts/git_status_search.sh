@@ -59,8 +59,10 @@ folderChildren ~/go/src/github.com/rmrf8
 folderChildren ~/go/src/github.com/TabDigital
 folderChildren ~/gbx
 folderChildren ~/schkit
+folderChildren ~/docker
 search ~/TabDigital
 search ~/ops
+search ~/sites
 check ~/common
 check ~/calite
 echo "Clean Exit"
