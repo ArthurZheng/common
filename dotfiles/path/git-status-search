@@ -10,6 +10,7 @@ check() {
 	pwd
 	remote=$(git config --get remote.origin.url || echo "NO REMOTE")
 	echo $remote
+	git fetch
 
     git_status=$(git status)
 	#echo $git_status
@@ -60,8 +61,10 @@ folderChildren ~/go/src/github.com/rmrf8
 folderChildren ~/go/src/github.com/TabDigital
 folderChildren ~/gbx
 folderChildren ~/schkit
+folderChildren ~/docker
 search ~/TabDigital
 search ~/ops
+search ~/sites
 check ~/common
 check ~/calite
 echo "Clean Exit"
