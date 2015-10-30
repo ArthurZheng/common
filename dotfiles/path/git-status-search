@@ -10,6 +10,7 @@ check() {
 	pwd
 	remote=$(git config --get remote.origin.url || echo "NO REMOTE")
 	echo $remote
+	git fetch
 
     git_status=$(git status)
 	#echo $git_status
