@@ -55,6 +55,7 @@ search() {
 }
 
 folderChildren ~/go/src/github.com/daemonl
+folderChildren ~/go/src/git.rebase.com.au
 folderChildren ~/go/src/github.com/rmrf8
 folderChildren ~/go/src/github.com/TabDigital
 folderChildren ~/gbx
