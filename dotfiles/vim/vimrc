@@ -34,6 +34,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'groenewege/vim-less'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'gijsk/mozjs-syntax'
+Plugin 'rust-lang/rust.vim'
 "Plugin 'javacomplete'
 
 "Util
