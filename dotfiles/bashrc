@@ -9,12 +9,15 @@ export PATH
 export GOPATH=$HOME/go
 export GOROOT=/opt/go
 
+# Continue only for 'normal' terminal
 [ -z "$PS1" ] && return
 
+source /etc/bash_completion
+
 export HISTCONTROL=ignoredups:erasedups
-#shopt -s histappend
-#export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
 shopt -s expand_aliases
+stty -ixon # Disable ctrl+s freeze thing, use it for history search
 
 #set -o vi # Vim line editing
 
@@ -24,74 +27,9 @@ alias grep="grep --color=auto"
 alias less="less -S"
 alias gitg="setsid gitg > /dev/null 2>&1" 
 
-stty -ixon # Disable ctrl+s freeze thing, use it for history search
-
-function git_branch {
-	local git_status="$(git status 2> /dev/null)"
-	local on_branch="On branch ([^${IFS}]*)"
-	local on_commit="HEAD detached at ([^${IFS}]*)"
-
-	if [[ ! $git_status =~ "working directory clean" ]]; then
-		COLOR="\033[30;41m"
-	elif [[ $git_status =~ "Your branch is ahead of" ]]; then
-		COLOR="\033[40;33m"
-	elif [[ $git_status =~ "nothing to commit" ]]; then
-		COLOR="\033[30;42m"
-	else
-		COLOR="\033[38;5;95m"
-	fi
-
-	if [[ $git_status =~ $on_branch ]]; then
-		local branch=${BASH_REMATCH[1]}
-		echo -e "$COLOR $branch "
-	elif [[ $git_status =~ $on_commit ]]; then
-		local commit=${BASH_REMATCH[1]}
-		echo -e "$COLOR $commit "
-	fi
-}
-
-COLOR_DIR="\[\033[0;32m\]" # GREEN
-COLOR_USER="\[\033[0;36m\]" # CYAN
-COLOR_PROMPT="\[\033[1;37m\]" # BOLD WHITE
-COLOR_BRACKET="\[\033[0;37m\]" # WHITE
-COLOR_RESET="\[\033[0m\]"
-
-PS1="$COLOR_BRACKET[$COLOR_USER\u@\h$COLOR_BRACKET] "
-PS1+="$COLOR_DIR\w "
-PS1+="\$(git_branch)"
-PS1+="$COLOR_RESET\n$COLOR_PROMPT\$ $COLOR_RESET"
-
-export PS1
-
-# usage: sshAlias t someConfigPath/config creates tssh and tscp with autocomplete
-_sshComplete() {
-	local CONFIG=$1
-	local cur prev opts
-		
-	opts=$(grep '^Host ' $CONFIG \
-		| cut -c6- \
-		| tr " " "\n" \
-		| sort | uniq \
-		| grep '^[^*]\+$')
-
-	COMPREPLY=()
-	cur="${COMP_WORDS[COMP_CWORD]}"
-	prev="${COMP_WORDS[COMP_CWORD-1]}"
-
-	COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
-	return 0
-}
-
-_ssh() {
-	_sshComplete $HOME/.ssh/config
-}
-
-complete -F _ssh ssh
-complete -f -d -F _ssh scp
-
-if [ -f ~/common/scripts/git-completion.bash ]; then
-  source ~/common/scripts/git-completion.bash
-fi
+for f in $(ls ~/common/bashrc.d); do
+	source ~/common/bashrc.d/$f
+done
 
 if [ -f $HOME/.bashrc-local ]; then
 	source $HOME/.bashrc-local
