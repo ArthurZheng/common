@@ -14,7 +14,11 @@ _complete_ssh() {
 
 _ssh_config_hosts() {
 	local cur opts config
-	config=`alias $1 | grep -o "\-F [^ ']\+" | cut -d' ' -f2`
+	if [[ $1 == "ssh" || $1 == "scp" ]]; then
+		config=$HOME/.ssh/config
+	else
+		config=`alias $1 | grep -o "\-F [^ ']\+" | cut -d' ' -f2`
+	fi
 	opts=$(grep '^Host ' $config \
 		| cut -c6- \
 		| tr " " "\n" \

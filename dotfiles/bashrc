@@ -28,9 +28,9 @@ alias less="less -S"
 alias gitg="setsid gitg > /dev/null 2>&1" 
 
 if [ -d ~/common/bashrc.d ]; then
-for f in $(ls ~/common/bashrc.d); do
-	source ~/common/bashrc.d/$f
-done
+	for f in $(ls ~/common/bashrc.d); do
+		source ~/common/bashrc.d/$f
+	done
 fi
 
 if [ -f $HOME/.bashrc-local ]; then
