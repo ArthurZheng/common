@@ -1,0 +1,27 @@
+# Core
+deb http://ftp.au.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.au.debian.org/debian/ jessie main
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+deb http://ftp.au.debian.org/debian/ jessie-updates main
+deb-src http://ftp.au.debian.org/debian/ jessie-updates main
+
+
+# Hipchat
+#KEYURL https://www.hipchat.com/keys/hipchat-linux.key
+deb http://downloads.hipchat.com/linux/apt stable main
+
+# Docker
+#KEYSRV hkp://pgp.mit.edu:80 58118E89F3A912897C070ADBF76221572C52609D
+deb https://apt.dockerproject.org/repo debian-jessie main
+
+# Chrome
+#deb http://dl.google.com/linux/chrome/deb/ stable main
+
+# Node.js
+#KEYURL https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+deb https://deb.nodesource.com/node jessie main
+deb-src https://deb.nodesource.com/node jessie main
+

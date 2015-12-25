@@ -28,13 +28,14 @@ Plugin 'majutsushi/tagbar'
 "Languages
 Plugin 'fatih/vim-go'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'ingydotnet/yaml-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'groenewege/vim-less'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'gijsk/mozjs-syntax'
 Plugin 'rust-lang/rust.vim'
+Plugin 'hdima/python-syntax'
+Plugin 'avakhov/vim-yaml'
 "Plugin 'javacomplete'
 
 "Util
@@ -92,6 +93,7 @@ imap <PageDown> <Nop>
 
 " Toggle Vexplore with Ctrl-E
 nnoremap <leader>] :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>x :Bclose<CR>
 
 " Copy and Paste
 vnoremap <C-c> "+Y
@@ -149,7 +151,6 @@ augroup fileTypes
 	au BufRead,BufNewFile *.md setlocal filetype=markdown
 	au BufRead,BufNewFile *.ts setlocal filetype=typescript
 	au BufRead,BufNewFile *.es6 call SetECMA6()
-	au FileType html compiler html
 augroup END
 
 

@@ -6,8 +6,6 @@ ghUser=$username
 
 DIR=$HOME/dotfiles
 
-#PREREQ
-sudo apt-get install -y git vim curl
 
 ###########
 # SSH Keys
