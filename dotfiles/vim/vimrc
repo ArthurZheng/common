@@ -36,7 +36,8 @@ Plugin 'gijsk/mozjs-syntax'
 Plugin 'rust-lang/rust.vim'
 Plugin 'hdima/python-syntax'
 Plugin 'avakhov/vim-yaml'
-"Plugin 'javacomplete'
+Plugin 'javacomplete'
+Plugin 'rustushki/JavaImp.vim'
 
 "Util
 Plugin 'tpope/vim-fugitive'
@@ -187,4 +188,8 @@ augroup END
 
 hi StatusLine term=reverse guifg=Black guibg=Green
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_javascript_checkers = ['eslint']
