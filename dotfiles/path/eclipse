@@ -1,4 +1,0 @@
-#!/bin/bash -e
-export JAVA_HOME=/opt/java/jdk6-64/jre
-export PATH=$PATH:/opt/java/jdk6-64/bin
-/opt/eclipse/eclipse
