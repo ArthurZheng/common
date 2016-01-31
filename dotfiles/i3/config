@@ -21,6 +21,10 @@ bindsym $mod+r exec i2-input -F 'exec /home/daemonl/.path/i3rename "%s"' -P 'New
 bindsym $mod+Shift+l exec i3lock -c 002200
 bindsym $mod+Shift+d exec display-auto
 
+bindsym $mod+slash exec dbus-send  --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym $mod+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym $mod+comma exec dbus-send  --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
 for_window [title="KCalc"] floating enable
 for_window [title="Calculator"] floating enable
 
