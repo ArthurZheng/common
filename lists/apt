@@ -9,7 +9,8 @@ ansible
 xorg
 i3
 vim-gtk
-konsole
+rxvt-unicode
+rxvt-unicode-256color
 fonts-liberation
 # Oxygen is a KDE style, ported to gtk
 gtk2-engines-oxygen
