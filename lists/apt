@@ -9,7 +9,6 @@ ansible
 xorg
 i3
 vim-gtk
-rxvt-unicode
 rxvt-unicode-256color
 fonts-liberation
 # Oxygen is a KDE style, ported to gtk
@@ -38,8 +37,6 @@ libpango1.0-dev
 libx11-6
 
 # Dev Tools
-nodejs
-npm
 build-essential
 pkg-config
 
@@ -47,5 +44,4 @@ pkg-config
 gitg
 kdiff3
 meld
-tortoisehg
 synaptic
