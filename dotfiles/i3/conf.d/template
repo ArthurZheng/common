@@ -30,18 +30,6 @@ for_window [title="Calculator"] floating enable
 
 bindcode 147 exec kcalc
 bindcode --release 107 exec --no-startup-id import ~/screenshot-`date +%F-%T`.png
-## Even and odd for two monitors
-workspace 1 output HDMI1
-workspace 2 output HDMI1
-workspace 3 output HDMI1
-workspace 4 output HDMI1
-workspace 5 output HDMI1
-
-workspace 6 output VGA1
-workspace 7 output VGA1
-workspace 8 output VGA1
-workspace 9 output VGA1
-workspace 10 output VGA1
 
 font pango:DejaVu Sans Mono 10
 
