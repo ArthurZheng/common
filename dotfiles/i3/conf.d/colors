@@ -1,0 +1,21 @@
+set $color-fg   #aaaaaa
+set $color-bg   #000000
+set $color-text #ffffff
+bar {
+	status_command i3status
+	colors {
+		separator #AAAAAA
+		background $color-bg
+		statusline #FFFFFF # BORDER    BACK   TEXT
+		focused_workspace  $color-fg $color-bg $color-text
+		active_workspace   $color-bg #111111 $color-bg
+		inactive_workspace #444444 #111111 #eeeeee
+		urgent_workspace   #CE4045 #CE4045 #FFFFFF
+	}
+}
+# class                 border  bg      text    indicator
+client.focused          $color-fg $color-bg $color-text $color-bg
+client.focused_inactive $color-bg $color-bg $color-text $color-bg
+client.unfocused        $color-bg $color-bg $color-text $color-bg
+client.urgent           #CE4045 #CE4045 #e7d8b1 #DCCD69
+client.background       #ffffff

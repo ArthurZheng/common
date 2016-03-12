@@ -20,28 +20,17 @@ focus_follows_mouse no
 bindsym $mod+r exec i2-input -F 'exec /home/daemonl/.path/i3rename "%s"' -P 'New name: '
 bindsym $mod+Shift+l exec i3lock -c 002200
 bindsym $mod+Shift+d exec display-auto
+bindsym $mod+Ctrl+Shift+d exec xrandr --auto
 
 bindsym $mod+slash exec dbus-send  --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 bindsym $mod+period exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym $mod+comma exec dbus-send  --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
-for_window [title="KCalc"] floating enable
 for_window [title="Calculator"] floating enable
-
-bindcode 147 exec kcalc
+for_window [instance="gpick" class="Gpick"] floating enable
+for_window [instance="wicd-client.py" class="Wicd-client.py"] floating enable
+bindcode 147 exec xcalc
 bindcode --release 107 exec --no-startup-id import ~/screenshot-`date +%F-%T`.png
-## Even and odd for two monitors
-workspace 1 output HDMI1
-workspace 2 output HDMI1
-workspace 3 output HDMI1
-workspace 4 output HDMI1
-workspace 5 output HDMI1
-
-workspace 6 output VGA1
-workspace 7 output VGA1
-workspace 8 output VGA1
-workspace 9 output VGA1
-workspace 10 output VGA1
 
 font pango:DejaVu Sans Mono 10
 
@@ -49,7 +38,7 @@ font pango:DejaVu Sans Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec xterm
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
@@ -126,50 +115,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec ~/.i3/reload.sh
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to no@snrmal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-#bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	status_command i3status
-	colors {
-		separator #AAAAAA
-		background #111111
-		statusline #FFFFFF
-		focused_workspace  #009900 #002200 #00ee00
-		active_workspace   #009900 #111111 #009900
-		inactive_workspace #444444 #111111 #eeeeee
-		urgent_workspace   #CE4045 #CE4045 #FFFFFF
-	}
-}
-# class                 border  bg      text    indicator
-client.focused          #aaaaaa #999999 #000000 #000000
-client.focused_inactive #aaaaaa #111111 #eeeeee #eeeeee
-client.unfocused        #aaaaaa #111111 #eeeeee #eeeeee
-client.urgent           #CE4045 #CE4045 #e7d8b1 #DCCD69
-client.background #ffffff

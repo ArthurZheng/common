@@ -1,0 +1,14 @@
+*background: #1B1D1E
+*foreground: #F8F8F2
+URxvt.scrollBar: off
+URxvt.font: xft:DejaVu Sans Mono:size=12
+xterm*faceName: DejaVu Sans Mono:style=Book:antialias=true
+xterm*faceSize: 12
+URxvt.perl-ext-common: default,clipboard
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+!URxvt.clipboard.copycmd:  xsel -ib
+!URxvt.clipboard.pastecmd: xsel -ob
+URxvt.transparent:   true
+URxvt.shading:       20

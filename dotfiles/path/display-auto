@@ -1,35 +1,49 @@
 #!/bin/bash
 
-disp_eDP1=false
-disp_VGA1=false
-disp_HDMI1=false
-disp_other=false
 
-while read display; do
-	displayName=$(echo $display | cut -d' ' -f1 )
-	echo "Display: $displayName"
-	case $displayName in
-		"eDP1")
-			disp_eDP1=true
+displays=$(xrandr | grep " connected" | cut -d' ' -f1 | sort | paste -sd ',' -)
+
+case $displays in
+	"DP3,DP4,eDP1")
+		xrandr --output DP4 --auto
+		xrandr --output DP3 --auto --right-of DP4
+		xrandr --output eDP1 --off
+		i3l=DP4
+		i3r=DP3
 		;;
-		"VGA1")
-			disp_VGA1=true
-			;;
-		"HDMI1")
-			disp_HDMI1=true
-			;;
-		*)
-			disp_other=true
-			;;
-	esac
-done < <( xrandr | grep " connected")
+	"DP4,DP5,eDP1")
+		xrandr --output DP4 --auto
+		xrandr --output DP5 --auto --right-of DP4
+		xrandr --output eDP1 --off
+		i3l=DP4
+		i3r=DP5
+		;;
+	"eDP1,HDMI1,VGA1")
+		xrandr --output HDMI1 --auto
+		xrandr --output VGA1 --auto --right-of HDMI1
+		xrandr --output eDP1 --off
+		i3l=HDMI1
+		i3r=VGA1
+		;;
+	*)
+		for d in $(xrandr | grep " connected" | cut -d' ' -f1); do
+			xrandr --output $d --auto
+		done
+		;;
+esac
+d="# AUTO GENERATED #"
+d="$d\nworkspace 1 output $i3l"
+d="$d\nworkspace 2 output $i3l"
+d="$d\nworkspace 3 output $i3l"
+d="$d\nworkspace 4 output $i3l"
+d="$d\nworkspace 5 output $i3l"
 
-if ( [ !$disp_other ] && $disp_VGA1 && $disp_HDMI1 ); then
-	xrandr --output VGA1 --auto
-	xrandr --output HDMI1 --auto --left-of VGA1
-	xrandr --output eDP1 --off
-else
-	xrandr --output eDP1 --auto
-	xrandr --output VGA1 --off
-	xrandr --output HDMI1 --off
-fi
+d="$d\nworkspace 6 output $i3r"
+d="$d\nworkspace 7 output $i3r"
+d="$d\nworkspace 8 output $i3r"
+d="$d\nworkspace 9 output $i3r"
+d="$d\nworkspace 10 output $i3r"
+
+echo -e $d > ~/.i3/conf.d/displays
+cat ~/.i3/conf.d/* > ~/.i3/config
+i3-msg reload
