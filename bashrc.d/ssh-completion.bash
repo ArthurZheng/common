@@ -26,7 +26,7 @@ _ssh_config_hosts() {
 		| grep '^[^*]\+$')
 
 	cur="${COMP_WORDS[COMP_CWORD]}"
-	COMPREPLY+=( $(compgen -W "$opts" -- ${cur}) )
+	COMPREPLY+=($(compgen -W "$opts" -- ${cur}))
 	return 0
 }
 
