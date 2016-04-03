@@ -2,8 +2,6 @@
 
 PATH+=:$HOME/.path
 PATH+=:$HOME/go/bin
-PATH+=:$HOME/gbx/guapi-can/path
-PATH+=:$HOME/npm-global/bin
 export PATH
 
 export GOPATH=$HOME/go
@@ -27,9 +25,11 @@ alias grep="grep --color=auto"
 alias less="less -S"
 alias gitg="setsid gitg > /dev/null 2>&1" 
 
-if [ -d ~/common/bashrc.d ]; then
-	for f in $(ls ~/common/bashrc.d); do
-		source ~/common/bashrc.d/$f
+bashrcd=~/Documents/dev/projects/common/bashrc.d
+
+if [ -d $bashrcd ]; then
+	for f in $(ls $bashrcd ); do
+		source $bashrcd/$f
 	done
 fi
 
